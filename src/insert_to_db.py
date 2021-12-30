@@ -18,6 +18,11 @@ records = df.to_records(index=False)
 
 result = list(records)
 
+#drop old version table
+mycursor.execute("""drop table coin_price""")
+
+mycursor.execute("CREATE TABLE coin_price (datetime datetime, coin_name VARCHAR(255), coin_price int)")
+
 #insert data into mysql db
 mySql_insert_query = """INSERT INTO coin_price (datetime,coin_name,coin_price) VALUES (%s, %s, %s) """
 
